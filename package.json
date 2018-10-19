@@ -4,7 +4,7 @@
   "description": "Boilerplate for a full-stack MERN app",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "python server/app.py",
     "test": "jest",
     "start:dev": "webpack-dev-server",
     "react:dev": "webpack --watch",
@@ -34,7 +34,6 @@
   },
   "homepage": "https://github.com/jlukenoff/MERN-boilerplate#readme",
   "dependencies": {
-    "express": "^4.16.3",
     "jest": "^23.6.0",
     "mongoose": "^5.3.0",
     "prop-types": "^15.6.2",
