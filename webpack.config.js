@@ -2,7 +2,7 @@ const path = require('path');
 
 const ENTRY_POINT = path.resolve(__dirname, 'client/index.jsx');
 
-const OUTPUT_DIR = path.resolve(__dirname, 'public');
+const OUTPUT_DIR = path.resolve(__dirname, 'server/static');
 
 module.exports = {
   entry: ENTRY_POINT,

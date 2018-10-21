@@ -8,12 +8,14 @@ import os
 from os.path import join, dirname
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
-from flask import Flask
+from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 app = Flask(__name__)
+CORS(app)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 lob.api_key = os.environ['LOB_KEY']
@@ -93,7 +95,21 @@ scheduler.start()
 # Routes
 @app.route('/')
 def home():
-	return "success"
+	return render_template('index.html')
+
+@app.route('/api/all_users')
+def get_all_users():
+	users = Users.query.all()
+	userStore = []
+	for user in users:
+		userStore.append({
+			'id': user.id,
+			'name': user.name,
+			'location': user.address_city + ', ' + user.address_state,
+			'anniversary': user.anniversary,
+		})
+	return jsonify(userStore)
+
 
 @app.route('/deliveries')
 def get_delivered_users():
