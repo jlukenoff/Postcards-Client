@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UserData from '../UserData/UserData';
 
 // import PropTypes from 'prop-types';
 
@@ -8,8 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      anniversaryUsers: [],
-      allUsers: [],
+      users: [],
       ...props,
     };
   }
@@ -20,28 +20,21 @@ class App extends Component {
       .then((users) => {
         const date = +(new Date().getMonth().toString() + new Date().getDate().toString());
         this.setState({
-          anniversaryUsers: users.filter(user => user.anniversay === date),
-          allUsers: users,
+          users: users.filter(user => user.anniversay === date),
         });
       })
       .catch(console.error);
   }
 
   render() {
-    const { anniversaryUsers, allUsers } = this.state;
+    /**
+     * TODO:
+      * - add filtering and sort-by functionality
+      * - parse users to a table and display relevent columns
+     */
     return (
       <div className={styles.rootContainer}>
-        <div className={styles['user-container--all']}>
-          <p>All Users:</p>
-          {allUsers.map(user => (<li>{user.name}</li>))}
-        </div>
-        <div className={styles['user-container--anniversary']}>
-          <p>These users will be sent a postcard today:</p>
-          {anniversaryUsers.length > 0 && (
-          <ul>
-            {anniversaryUsers.map(user => (<li>{user.name}</li>))}
-          </ul>)}
-        </div>
+        <UserData {...this.state} />
       </div>
     );
   }

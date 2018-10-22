@@ -38,7 +38,7 @@ for i in range(100):
 		address_line2=user.address_line2,
 		address_state=user.address_state,
 		address_zip=user.address_zip,
-		anniversary=int(str(created_date.month) + str(created_date.day)),
+		anniversary=str(created_date.month) + '-' + str(created_date.day),
 		password=fake.md5()
 	)
 	# add model to db session

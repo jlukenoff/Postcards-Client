@@ -14,7 +14,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static/dist", template_folder="static")
 CORS(app)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -38,7 +38,7 @@ class Users(db.Model):
 	address_line2 = db.Column(db.String(80))
 	address_state = db.Column(db.String(80), nullable=False)
 	address_zip = db.Column(db.String(20), nullable=False)
-	anniversary = db.Column(db.Integer, nullable=False)
+	anniversary = db.Column(db.String(20), nullable=False)
 	password = db.Column(db.String(60), nullable=False)
 
 	def __repr__(self):
@@ -105,7 +105,8 @@ def get_all_users():
 		userStore.append({
 			'id': user.id,
 			'name': user.name,
-			'location': user.address_city + ', ' + user.address_state,
+			'city': user.address_city,
+			'state': user.address_state,
 			'anniversary': user.anniversary,
 		})
 	return jsonify(userStore)
