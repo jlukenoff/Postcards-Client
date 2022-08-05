@@ -35,7 +35,7 @@
   "homepage": "https://github.com/jlukenoff/MERN-boilerplate#readme",
   "dependencies": {
     "jest": "^23.6.0",
-    "mongoose": "^5.3.0",
+    "mongoose": "^5.7.5",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
