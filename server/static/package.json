@@ -55,6 +55,6 @@
     "grunt-aws": "^0.6.2",
     "style-loader": "^0.23.0",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.3.12"
   }
 }
